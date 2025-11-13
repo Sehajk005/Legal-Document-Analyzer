@@ -95,7 +95,7 @@ pip install -r requirements.txt
 
 **3. Set Your Secrets**
 
-Create `.streamlit/secrets.toml`:
+**B. Create .streamlit/secrets.toml file**: Create a folder named .streamlit and inside it, a file named secrets.toml. This is for your Google Sheets feedback connection.
 
 ```toml
 
@@ -114,7 +114,7 @@ auth_provider_x509_cert_url = "https://www.googleapis.com/oauth2/v1/certs"
 client_x509_cert_url = "your-cert-url"
 ```
 
-Create `.env`:
+**B. Create .env file**: Create a file named .env in the root of the project for your Gemini API Key.
 
 ```env
 # Gemini API
