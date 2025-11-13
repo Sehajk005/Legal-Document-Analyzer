@@ -33,8 +33,11 @@ Our solution is an app that is fast, robust, and inherently safe by design.
 
 ## 3. Our Winning Factor: Inherent Responsibility
 This project's "win factor" is It's a single-call, highly-tuned RAG bot that is responsible by default.
+
 We prove this with a 20-question gauntlet test.
+
 **How It Works**
+
 The magic is in the prompt engineering. Our RAG bot (a single call to Gemini) is given a ruthless set of rules:
 - **Factual Questions ("What," "When")**: Answer directly from the text.
 - **Advice Questions ("Should I," "Can I")**: You MUST NOT provide legal advice. You must state the facts from the document and then add a "consult a lawyer" disclaimer.
