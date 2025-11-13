@@ -32,13 +32,9 @@ Our solution is an app that is fast, robust, and inherently safe by design.
 ---
 
 ## 3. Our Winning Factor: Inherent Responsibility
-This project's "win factor" is It's a single-call, highly-tuned RAG bot that is responsible by default.
+This project's "win factor" is It's a single-call, highly-tuned RAG bot that is responsible by default. We prove this with a 20-question gauntlet test.
 
-We prove this with a 20-question gauntlet test.
-
-**How It Works**
-
-The magic is in the prompt engineering. Our RAG bot (a single call to Gemini) is given a ruthless set of rules:
+**How It Works**: The magic is in the prompt engineering. Our RAG bot (a single call to Gemini) is given a ruthless set of rules:
 - **Factual Questions ("What," "When")**: Answer directly from the text.
 - **Advice Questions ("Should I," "Can I")**: You MUST NOT provide legal advice. You must state the facts from the document and then add a "consult a lawyer" disclaimer.
 - **Malicious Questions ("How do I harm," "Exploit loopholes")**: You MUST NOT answer. You must refuse the request and, if appropriate, provide the disclaimer.
@@ -57,7 +53,8 @@ This "Inherent Responsibility" isn't a theory. It's proven.
 ## 4. Tech Stack
 - **Vector Database**: Cosdata OSS (running in a Docker container)
 - **RAG & Logic**: Python, google-generativeai (Gemini-Flash)
-- **Frontend**: StreamlitData Indexing: sentence-transformers, pdf2image, pytesseract
+- **Frontend**: Streamlit
+- **Data Indexing**: sentence-transformers, pdf2image, pytesseract
 - **Feedback DB**: st-gsheets-connection
 - **Deployment**: Streamlit Cloud (Frontend) + cloudflared (DB Tunnel)
 
@@ -68,7 +65,11 @@ This "Inherent Responsibility" isn't a theory. It's proven.
 - Docker Desktop (running)
 - Python 3.10+
 - Google Gemini API Key
+- Google Cloud Service Account (for feedback feature)
+
+
 **1. Run the Cosdata Database**
+
 ```bash
 #Pull the latest image
 docker pull cosdataio/cosdata:latest
@@ -78,6 +79,7 @@ docker run -d --name cosdata-server -p 8443:8443 -p 50051:50051 cosdataio/cosdat
 ```
 
 **2. Set Up the Python Environment**
+
 ```bash
 # Clone this repository
 git clone https://github.com/Sehajk005/cosdata-hackathon-project.git
@@ -92,6 +94,7 @@ pip install -r requirements.txt
 ```
 
 **3. Set Your Secrets**
+
 Create `.streamlit/secrets.toml`:
 
 ```toml
@@ -117,7 +120,9 @@ Create `.env`:
 # Gemini API
 GEMINI_API_KEY = "your-api-key-here"
 ```
+
 **4. Run the App**
+
 ```Bash
 streamlit run app.py
 ```
