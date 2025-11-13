@@ -6,7 +6,7 @@ from sentence_transformers import SentenceTransformer
 # --- CONFIG ---
 COLLECTION_NAME = "legal_aid_rag"
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
-COSDATA_HOST = "http://127.0.0.1:8443"
+COSDATA_HOST = "https://newsletters-exhaust-vintage-numeric.trycloudflare.com"
 # --------------
 
 print(f"Loading embedding model: {EMBEDDING_MODEL}...")
