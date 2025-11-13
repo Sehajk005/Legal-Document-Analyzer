@@ -95,7 +95,7 @@ pip install -r requirements.txt
 
 **3. Set Your Secrets**
 
-**B. Create .streamlit/secrets.toml file**: Create a folder named .streamlit and inside it, a file named secrets.toml. This is for your Google Sheets feedback connection.
+**A. Create .streamlit/secrets.toml file**: Create a folder named .streamlit and inside it, a file named secrets.toml. This is for your Google Sheets feedback connection.
 
 ```toml
 
