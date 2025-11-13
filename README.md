@@ -9,6 +9,7 @@ answers to user questions using a Cosdata-powered RAG pipeline.
 ---
 
 Quick LinksDemo Video: [Link to Your 3-Minute YouTube Demo]
+
 Live App: [Link to Your Streamlit Cloud App (will be live on Nov 15)]
 
 ---
