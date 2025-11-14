@@ -124,3 +124,20 @@ def query_cosdata(user_question, top_k=3):
                 print(f"Failed to fetch document {vec_id}: {e}")
             
     return final_results
+
+
+def nuke_and_recreate_collection():
+    """
+    Deletes the entire collection to ensure no old data.
+    This is a destructive action and should only be called on a new document upload.
+    """
+    try:
+        print("NUKE: Attempting to delete old collection...")
+        client.get_collection(COLLECTION_NAME).delete()
+        print("NUKE: Old collection deleted.")
+        time.sleep(1) # Give the server a second
+    except Exception as e:
+        print(f"NUKE: Collection did not exist (this is OK): {e}")
+
+    # Now, call the original function to create a clean one
+    return get_or_create_collection()
