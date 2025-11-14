@@ -7,6 +7,7 @@ sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 from src.pipeline import process_pdf_for_text
 from src.information_extraction.extractor import extract_entities_with_llm
 from src.information_extraction.extractor import answer_user_questions
+from src.cosdata_store import nuke_and_recreate_collection
 import tempfile
 import json
 import re
@@ -73,6 +74,11 @@ upload_file = st.file_uploader("Upload a PDF", type=['pdf'])
 if upload_file is not None:
     if st.button("Analyze Document", type="primary"):
         with st.spinner("Processing PDF... This may take a few minutes..."):
+            
+            nuke_and_recreate_collection()
+            st.session_state.message_history = [] # Clear the chat history
+            
+            
             with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tem_file: # create a temporary file
                 tem_file.write(upload_file.getvalue()) # write the uploaded file to the temporary file
                 tem_file_path = tem_file.name # get the temporary file path
