@@ -1,5 +1,6 @@
 import sys
 import os
+import uuid
 
 # Add the project's root directory to the Python path
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
@@ -69,13 +70,23 @@ def log_feedback(question, answer, rating, comment=""):
 if 'message_history' not in st.session_state:
     st.session_state.message_history = []
     
+# --- SET UP USER SESSION ---
+if 'session_id' not in st.session_state:
+    # Generate a clean, random ID for this user session
+    # We use hex to avoid special characters that might break DB naming rules
+    st.session_state.session_id = f"user_{uuid.uuid4().hex[:8]}"
+
+# Define the user's unique collection name
+user_collection = f"legal_aid_{st.session_state.session_id}"
+# -------------------------
+    
 st.title("AI Powered Legal Aid For Common Citizens")
 upload_file = st.file_uploader("Upload a PDF", type=['pdf'])
 if upload_file is not None:
     if st.button("Analyze Document", type="primary"):
         with st.spinner("Processing PDF... This may take a few minutes..."):
             
-            nuke_and_recreate_collection()
+            nuke_and_recreate_collection(user_collection)
             st.session_state.message_history = [] # Clear the chat history
             
             
@@ -83,7 +94,7 @@ if upload_file is not None:
                 tem_file.write(upload_file.getvalue()) # write the uploaded file to the temporary file
                 tem_file_path = tem_file.name # get the temporary file path
     
-            text = process_pdf_for_text(tem_file_path)
+            text = process_pdf_for_text(tem_file_path, user_collection)
     
             llm_output = extract_entities_with_llm(text)
             data = {}
@@ -208,7 +219,7 @@ if st.session_state.get('analysis_complete'):
                 # --- THIS IS THE MODIFIED LOGIC ---
                 # We no longer build 'full_context'.
                 # We just call the new RAG-powered function.
-                response = answer_user_questions(prompt)
+                response = answer_user_questions(prompt, user_collection)
                 # ----------------------------------
 
                 # Add assistant response to history
