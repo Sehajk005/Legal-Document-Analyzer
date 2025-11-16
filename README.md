@@ -10,6 +10,7 @@ answers to user questions using a Cosdata-powered RAG pipeline.
 
 Quick LinksDemo Video: [Link to Your 3-Minute YouTube Demo]
 
+---
 ### A Note on Deployment
 
 This is a two-part application: a live Streamlit frontend and a local Cosdata OSS database running in a Docker container.
@@ -17,6 +18,7 @@ This is a two-part application: a live Streamlit frontend and a local Cosdata OS
 For this hackathon, the database is tunneled to the internet from a local machine using `cloudflared`. **This means the "Live App" link may be temporarily down** if the local machine is offline.
 
 **For a 100% guaranteed, functional demo, please watch the 3-minute demo video.**
+
 Live App: [Link to Your Streamlit Cloud App (will be live on Nov 15)]
 
 ---
