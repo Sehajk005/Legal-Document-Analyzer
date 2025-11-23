@@ -59,7 +59,7 @@ def extract_entities_with_llm(text):
     response = model.generate_content(full_prompt)
     return response.text
 
-def answer_user_questions(user_question, collection_name):
+def answer_user_questions(user_question, session_id, active_doc_name):
     """
     --- THIS IS THE UPDATED RAG FUNCTION ---
     It now returns (answer, context) or (error_message, None)
@@ -67,7 +67,7 @@ def answer_user_questions(user_question, collection_name):
     print(f"Answering RAG question: {user_question}")
     
     # 1. Retrieve relevant chunks from Cosdata
-    retrieved_chunks = query_cosdata(user_question, collection_name, top_k=5)
+    retrieved_chunks = query_cosdata(user_question, session_id, active_doc_name, top_k=5)
     
     # # --- DEBUG LINE ---
     # print("\n--- DEBUG: TOP 5 RETRIEVED CHUNKS ---")
