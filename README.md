@@ -66,6 +66,7 @@ Instead of a wall of text, we extract entities (Names, Dates, Payments) and flag
 ---
 
 ## 5. How to Run Locally
+<details> <summary><b>👆 Click to expand Installation Instructions</b></summary>
 **Prerequisites**
 - Docker Desktop (running)
 - Python 3.10+
@@ -131,3 +132,4 @@ GEMINI_API_KEY = "your-api-key-here"
 ```Bash
 streamlit run app.py
 ```
+</details>
