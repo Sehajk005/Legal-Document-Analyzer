@@ -8,7 +8,7 @@
 [![Cosdata](https://img.shields.io/badge/Powered%20By-Cosdata%20OSS-blue)](https://cosdata.io)
 [![Azure](https://img.shields.io/badge/Deployed%20on-Azure-0078D4)](http://40.90.161.244:8501)
 
-<img src="https://placehold.co/800x400?text=Replace+With+Your+App+Screenshot" alt="App Dashboard" width="100%" />
+![App Demo GIF](LINK_TO_YOUR_GIF_OR_SCREENSHOT.gif)
 
 <br/>
 
