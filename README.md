@@ -8,7 +8,7 @@
 [![Cosdata](https://img.shields.io/badge/Powered%20By-Cosdata%20OSS-blue)](https://cosdata.io)
 [![Azure](https://img.shields.io/badge/Deployed%20on-Azure-0078D4)](http://40.90.161.244:8501)
 
-![App Demo GIF](LINK_TO_YOUR_GIF_OR_SCREENSHOT.gif)
+![App Demo GIF](./assets/demo_opt.gif)
 
 <br/>
 
