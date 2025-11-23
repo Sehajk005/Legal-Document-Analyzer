@@ -1,24 +1,69 @@
+<div align="center">
+
 # ⚖️ AI-Powered Legal Aid for Common Citizens
 
-> **Making Law Accessible, Understandable, and Inherently Safe with Responsible AI.**
+### **Making Law Accessible, Understandable, and Inherently Safe with Responsible AI.**
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](http://40.90.161.244:8501)
 [![Cosdata](https://img.shields.io/badge/Powered%20By-Cosdata%20OSS-blue)](https://cosdata.io)
 [![Azure](https://img.shields.io/badge/Deployed%20on-Azure-0078D4)](http://40.90.161.244:8501)
 
-## 🚀 **Quick Links**
-- 🔴 **Live App:** [Click Here to Use the App (Hosted on Azure)](http://40.90.161.244:8501)
-- 📺 **Demo Video:** [Watch the 3-Minute Walkthrough](YOUR_YOUTUBE_LINK_HERE)
+<img src="https://placehold.co/800x400?text=Replace+With+Your+App+Screenshot" alt="App Dashboard" width="100%" />
+
+<br/>
+
+<p>
+  <a href="YOUR_YOUTUBE_LINK_HERE">📺 <b>Watch the 3-Minute Demo</b></a> | 
+  <a href="http://40.90.161.244:8501">🔴 <b>Try the Live App</b></a>
+</p>
+
+</div>
 
 ---
 
-## 📖 **Overview**
+## 📖 Overview
+
 **AI-Powered Legal Aid** is a Responsible RAG application designed to bridge the gap between complex legal jargon and everyday understanding. 
 
 Unlike standard chatbots that hallucinate or give dangerous advice, our system uses a **Safety-First Architecture**. It analyzes documents, translates clauses into plain English, detects risks, and answers questions while strictly refusing to provide definitive legal counsel or assist with malicious queries.
 
-**Submission for:** Cosdata Hackathon 2025
+> **Submission for:** Cosdata Hackathon 2025
 
+---
+
+## 🏗️ Architecture
+
+We solved the multi-tenant scalability issue using a **Global Collection Strategy** with Session-ID filtering.
+
+```mermaid
+graph TD
+    subgraph Frontend
+    User[User] -->|1. Upload PDF| UI[Streamlit UI]
+    User -->|4. Ask Question| UI
+    end
+
+    subgraph "Hybrid Processing Pipeline"
+    UI -->|2. Parse| Parser{Digital or Scan?}
+    Parser -->|Digital| PyMuPDF[PyMuPDF Engine]
+    Parser -->|Scanned| OCR[Tesseract OCR]
+    PyMuPDF --> Text[Clean Text]
+    OCR --> Text
+    end
+
+    subgraph "Intelligence Layer"
+    Text -->|3. Extract & Analyze| LLM[Gemini Flash 1.5]
+    LLM -->|JSON Report| UI
+    end
+
+    subgraph "Cosdata RAG Engine"
+    Text -->|Chunk & Tag| Indexer[Session Indexer]
+    Indexer -->|Upsert ID: session_filename_chunk| DB[(Cosdata Global Collection)]
+    
+    UI -->|5. Search (Filter: session_id)| DB
+    DB -->|Relevant Context| LLM
+    LLM -->|Responsible Answer| User
+    end
+```
 ---
 
 ## 💡 **The Problem vs. Our Solution**
