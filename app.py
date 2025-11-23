@@ -8,7 +8,6 @@ sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 from src.pipeline import process_pdf_for_text
 from src.information_extraction.extractor import extract_entities_with_llm
 from src.information_extraction.extractor import answer_user_questions
-from src.cosdata_store import nuke_and_recreate_collection
 import tempfile
 import json
 import re
