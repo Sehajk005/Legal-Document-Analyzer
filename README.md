@@ -36,33 +36,38 @@ Unlike standard chatbots that hallucinate or give dangerous advice, our system u
 We solved the multi-tenant scalability issue using a **Global Collection Strategy** with Session-ID filtering.
 
 ```mermaid
-graph TD
+flowchart TD
+    %% Frontend
     subgraph Frontend
-    User[User] -->|1. Upload PDF| UI[Streamlit UI]
-    User -->|4. Ask Question| UI
+        User[User] -->|"1. Upload PDF"| UI[Streamlit UI]
+        User -->|"4. Ask Question"| UI
     end
 
-    subgraph "Hybrid Processing Pipeline"
-    UI -->|2. Parse| Parser{Digital or Scan?}
-    Parser -->|Digital| PyMuPDF[PyMuPDF Engine]
-    Parser -->|Scanned| OCR[Tesseract OCR]
-    PyMuPDF --> Text[Clean Text]
-    OCR --> Text
+    %% Hybrid Processing Pipeline
+    subgraph Hybrid_Processing_Pipeline
+        UI -->|"2. Parse"| Parser{Digital or Scanned?}
+        Parser -->|"Digital"| PyMuPDF[PyMuPDF Engine]
+        Parser -->|"Scanned"| OCR[Tesseract OCR]
+        PyMuPDF --> Text[Clean Text]
+        OCR --> Text
     end
 
-    subgraph "Intelligence Layer"
-    Text -->|3. Extract & Analyze| LLM[Gemini Flash 1.5]
-    LLM -->|JSON Report| UI
+    %% Intelligence Layer
+    subgraph Intelligence_Layer
+        Text -->|"3. Extract and Analyze"| LLM[Gemini Flash 1.5]
+        LLM -->|"JSON Report"| UI
     end
 
-    subgraph "Cosdata RAG Engine"
-    Text -->|Chunk & Tag| Indexer[Session Indexer]
-    Indexer -->|Upsert ID: session_filename_chunk| DB[(Cosdata Global Collection)]
-    
-    UI -->|5. Search (Filter: session_id)| DB
-    DB -->|Relevant Context| LLM
-    LLM -->|Responsible Answer| User
+    %% Cosdata RAG Engine
+    subgraph Cosdata_RAG_Engine
+        Text -->|"Chunk and Tag"| Indexer[Session Indexer]
+        Indexer -->|"Upsert ID session_filename_chunk"| DB[(Cosdata Global Collection)]
+
+        UI -->|"5. Search with session_id filter"| DB
+        DB -->|"Relevant Context"| LLM
+        LLM -->|"Responsible Answer"| User
     end
+
 ```
 ---
 
