@@ -13,7 +13,7 @@
 <br/>
 
 <p>
-  <a href="YOUR_YOUTUBE_LINK_HERE">📺 <b>Watch the 3-Minute Demo</b></a> | 
+  <a href="https://youtu.be/dzDFZkL8zMQ">📺 <b>Watch the 3-Minute Demo</b></a> | 
   <a href="http://40.90.161.244:8501">🔴 <b>Try the Live App</b></a>
 </p>
 
