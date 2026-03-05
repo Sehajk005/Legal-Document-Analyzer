@@ -3,7 +3,7 @@ Pillow
 pytesseract
 pdf2image
 EasyOCR
-opencv-python-headless # EasyOCR often uses OpenCV
+opencv-python # EasyOCR often uses OpenCV
 pytest 
 pathlib
 PyMuPDF
